@@ -6,4 +6,7 @@ require("dotenv").config()
 app.listen(process.env.PORT,()=>{
     console.log(`Server is Starting on the port number ${process.env.PORT}`)
 })
+app.get("/",(req,res)=>{
+    res.send("hi")
+})
 conn()
