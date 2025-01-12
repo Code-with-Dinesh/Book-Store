@@ -11,5 +11,4 @@ const connectToDatabase = async () => {
     }
 };
 
-// Call the function to connect
 module.exports = connectToDatabase;
