@@ -4,6 +4,7 @@ const conn = require('./Connection');
 const router = require('./Routes/route');
 const adminroute =  require('./Routes/admin')
 const favouite = require('./Routes/favourate')
+const cart = require('./Routes/cart')
 const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
@@ -18,6 +19,7 @@ app.use('/api/v1',router)
 app.use('/api/v1',router)
 app.use('/api/v1',adminroute)
 app.use('/api/v1',favouite)
+app.use('/api/v1',cart)
 
 // Start the Server
 app.listen(process.env.PORT, () => {
