@@ -28,7 +28,7 @@ module.exports = router.post('/cart',Authenticationuser,async(req,res)=>{
     }
 })
 
-// Delete book from the cart 
+// remove book from the cart api is Here
 
 module.exports = router.put('/deletecartbook/:bookid',Authenticationuser,async(req,res)=>{
     try {
