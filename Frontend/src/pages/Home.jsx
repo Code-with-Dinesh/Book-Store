@@ -1,9 +1,15 @@
 import React from 'react'
+import Hero from '../Components/Hero'
 
 const Home = () => {
   return (
-    <div className='h-screen'>Home</div>
+    
+    <div className=' bg-zinc-800 px-10 py-4 text-white'>
+      <Hero/>
+      
+    </div>
+   
   )
 }
 
-export default Home
+export default Home 
