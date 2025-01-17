@@ -12,7 +12,7 @@ import Aboutus from "./Components/Aboutus";
 const App = () => {
   return (
     <>
-      <BrowserRouter>
+     
         <Navbar />
         <Routes>
         <Route path="/" exact element={<Home/>} />
@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/aboutus" element={<Aboutus/>}/>
          </Routes>
         <Footer />
-      </BrowserRouter>
+     
       
       
     </>

@@ -113,7 +113,7 @@ module.exports = router.get('/allbooks',Authenticationuser,async(req,res)=>{
 
 // recent book route
 
-module.exports = router.get('/recentbook',Authenticationuser,async(req,res)=>{
+module.exports = router.get('/recentbook',async(req,res)=>{
     try {
         const recentbook = await Book.find().sort({created:-1}).limit(4)
         res.status(200).json({

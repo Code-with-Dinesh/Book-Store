@@ -6,13 +6,13 @@ const adminroute =  require('./Routes/admin')
 const favouite = require('./Routes/favourate')
 const cart = require('./Routes/cart')
 const cookieParser = require("cookie-parser");
-
+const cors =  require('cors')
 require("dotenv").config();
 
 // Middleware
 app.use(express.json());
 app.use(cookieParser()); 
-
+app.use(cors())
 // Routes
 app.use('/api/v1', router);
 app.use('/api/v1',router)
