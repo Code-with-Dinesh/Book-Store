@@ -1,6 +1,6 @@
 import React from "react";
 import libremove from "../assets/libremove.png";
-
+import {Link} from 'react-router-dom'
 const Hero = () => {
   return (
     <div className=" flex flex-col md:flex-row">
@@ -13,9 +13,9 @@ const Hero = () => {
           Discover a world of captivating stories, endless knowledge, and
           boundless imagination at our bookstore, where adventures await you.
         </p>
-        <button className="border-white mt-4 border-2 rounded-full px-6 py-2 hover:bg-white hover:border-none transition-all duration-300 hover:text-black">
+       <Link to='/allbooks'> <button className="border-white mt-4 border-2 rounded-full px-6 py-2 hover:bg-white hover:border-none transition-all duration-300 hover:text-black">
           Discover Your Book
-        </button>
+        </button> </Link>
       </div>
 
       {/* Right Section */}

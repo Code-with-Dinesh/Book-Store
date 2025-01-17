@@ -98,7 +98,7 @@ module.exports = router.put('/updatebook',Authenticationuser,async(req,res)=>{
 
 //Show all books at ui
 
-module.exports = router.get('/allbooks',Authenticationuser,async(req,res)=>{
+module.exports = router.get('/allbooks',async(req,res)=>{
     try {
         const allbooks = await Book.find().sort({createdAt:-1});
         res.status(200).json({
@@ -128,7 +128,7 @@ module.exports = router.get('/recentbook',async(req,res)=>{
 })
 
 // Particular Book Details
-module.exports = router.get('/book/:id',Authenticationuser,async(req,res)=>{
+module.exports = router.get('/book/:id',async(req,res)=>{
   try {
     const {id} = req.params;
     const bookdetail = await Book.findById(id)
