@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdOutlineLanguage } from "react-icons/md";
+
 const ParticularBook = () => {
     const { id } = useParams();
     const Navigate =  useNavigate()
@@ -31,7 +33,7 @@ const ParticularBook = () => {
       </div>
       <div className=" md:w-2/3  text-zinc-200  w-full ml-4 p-5">
         <h2 className="md:text-6xl text-2xl font-bold mb-2">{particularbook.title}</h2>
-        <p className="text-lg mb-2"><strong className='text-orange-400'>Language:</strong> {particularbook.lang}</p>
+        <p className="text-lg mb-2 flex items-center gap-3"><strong className='text-orange-400'><MdOutlineLanguage size={25} /></strong> {particularbook.lang}</p>
         <p className="text-lg mb-2"><strong className='text-orange-400'>Description:</strong> {particularbook.desc}</p>
         <p className="text-lg mb-2"><strong className='text-orange-400'>Price:</strong> ${particularbook.price}</p>
         <p className="text-lg mb-2"><strong className='text-orange-400'>Author:</strong> {particularbook.author}</p>

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
 
 const Navbar = () => {
   const [navtoggle, setnavtoggle] = useState(false);
+  const isloggedin = useSelector((state) => state.auth.isloogedIn);
+  console.log(isloggedin);
 
-  
   const handleNavLinkClick = () => {
-    setnavtoggle(false); 
+    setnavtoggle(false);
   };
 
   return (
@@ -22,35 +24,59 @@ const Navbar = () => {
           <h1 className="font-semibold text-xl ">Book Store</h1>
         </div>
         <div className="hidden md:flex items-center gap-4">
-          <Link to="/" className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600">
+          <Link
+            to="/"
+            className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+          >
             <div>Home</div>
           </Link>
-          <Link to="/aboutus" className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600">
+          <Link
+            to="/aboutus"
+            className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+          >
             <div>About Us</div>
           </Link>
-          <Link to="/cart" className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600">
-            <div>Cart</div>
-          </Link>
-          <Link to="/allbooks" className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600">
+
+          <Link
+            to="/allbooks"
+            className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+          >
             <div>All Books</div>
           </Link>
-          <Link to="/profile" className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600">
-            <div>Profile</div>
-          </Link>
-          <div className="flex items-center gap-4">
-            <NavLink
-              to="/login"
-              className="bg-gray-700 border font-semibold hover:bg-white hover:text-black transition-all duration-300 border-blue-600 rounded-md px-3 py-1 text-white"
-              activeClassName="bg-blue-600"
-            >
-              Log In
-            </NavLink>
-            <Link to="/signup">
-              <button className="bg-blue-600 font-semibold border-blue-600 hover:bg-white hover:text-black transition-all duration-300 text-white px-3 py-1 rounded-md">
-                Sign up
-              </button>
-            </Link>
-          </div>
+          {isloggedin && (
+            <>
+              <Link
+                to="/cart"
+                className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+              >
+                <div>Cart</div>
+              </Link>
+
+              <Link
+                to="/profile"
+                className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+              >
+                <div>Profile</div>
+              </Link>
+            </>
+          )}
+
+          {!isloggedin && (
+            <div className="flex items-center gap-4">
+              <NavLink
+                to="/login"
+                className="bg-gray-700 border font-semibold hover:bg-white hover:text-black transition-all duration-300 border-blue-600 rounded-md px-3 py-1 text-white"
+                activeClassName="bg-blue-600"
+              >
+                Log In
+              </NavLink>
+              <Link to="/signup">
+                <button className="bg-blue-600 font-semibold border-blue-600 hover:bg-white hover:text-black transition-all duration-300 text-white px-3 py-1 rounded-md">
+                  Sign up
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
         <button className="md:hidden">
           <IoMenu onClick={() => setnavtoggle(!navtoggle)} size={25} />
@@ -66,20 +92,6 @@ const Navbar = () => {
             Home
           </Link>
           <Link
-            to="/aboutus"
-            onClick={handleNavLinkClick}
-            className="transition-all text-md cursor-pointer mb-4 text-2xl text-white font-semibold duration-300 hover:text-blue-600"
-          >
-            About Us
-          </Link>
-          <Link
-            to="/cart"
-            onClick={handleNavLinkClick}
-            className="transition-all text-md cursor-pointer mb-4 text-2xl text-white font-semibold duration-300 hover:text-blue-600"
-          >
-            Cart
-          </Link>
-          <Link
             to="/allbooks"
             onClick={handleNavLinkClick}
             className="transition-all text-md cursor-pointer mb-4 text-2xl text-white font-semibold duration-300 hover:text-blue-600"
@@ -87,12 +99,48 @@ const Navbar = () => {
             All Books
           </Link>
           <Link
-            to="/profile"
+            to="/aboutus"
             onClick={handleNavLinkClick}
-            className="transition-all text-md cursor-pointer text-2xl mb-4 text-white font-semibold duration-300 hover:text-blue-600"
+            className="transition-all text-md cursor-pointer mb-4 text-2xl text-white font-semibold duration-300 hover:text-blue-600"
           >
-            Profile
+            About Us
           </Link>
+          {isloggedin && (
+            <>
+              <Link
+                to="/cart"
+                className="transition-all text-md cursor-pointer mb-4 text-2xl text-white font-semibold duration-300 hover:text-blue-600"
+              >
+                Cart
+              </Link>
+
+              <Link
+                to="/profile"
+                className="transition-all text-md cursor-pointer text-2xl mb-4 text-white font-semibold duration-300 hover:text-blue-600"
+              >
+                Profile
+              </Link>
+            </>
+          )}
+           {
+           ! isloggedin && (
+            <div className="flex items-center gap-4">
+            <NavLink 
+            onClick={handleNavLinkClick}
+              to="/login"
+              className="bg-gray-700 border font-semibold hover:bg-white hover:text-black transition-all duration-300 border-blue-600 rounded-md px-3 py-1 text-white"
+              activeClassName="bg-blue-600"
+            >
+              Log In
+            </NavLink>
+            <Link onClick={handleNavLinkClick} to="/signup">
+              <button className="bg-blue-600 font-semibold border-blue-600 hover:bg-white hover:text-black transition-all duration-300 text-white px-3 py-1 rounded-md">
+                Sign up
+              </button>
+            </Link>
+          </div>
+           )
+           }
         </div>
       )}
     </>

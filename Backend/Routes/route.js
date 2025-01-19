@@ -48,12 +48,13 @@ module.exports =  router.post('/signup',async(req,res)=>{
         return res.status(200).json({
         success:true,
         message:'User Created successfully', 
-        token,
+        
         data:{
             id:newuser._id,
             username:newuser.username,
             email:newuser.email,
-            role:newuser.role
+            role:newuser.role,
+            token
         }
     })
    } catch (error) {
@@ -107,7 +108,9 @@ module.exports = router.post('/login',async(req,res)=>{
         data:{
             id:existenceuser._id,
             email:existenceuser.email,
-            username:existenceuser.username
+            username:existenceuser.username,
+            role:existenceuser.role,
+            token
         }
        })
        
