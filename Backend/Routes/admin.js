@@ -96,6 +96,28 @@ module.exports = router.put('/updatebook',Authenticationuser,async(req,res)=>{
 
 })
 
+// particular userinformation 
+module.exports = router.get('/userinfo', Authenticationuser, async (req, res) => {
+    try {
+        const userid = req.user.id;
+        const userinfo = await user.findById(userid).select("-password");
+        
+        if (!userinfo) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found',
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'User information fetched successfully',
+            data: userinfo,
+        });
+    } catch (error) {
+        console.log(`Error while fetching user information ${error}`);
+    }
+});
+
 //Show all books at ui
 
 module.exports = router.get('/allbooks',async(req,res)=>{
