@@ -38,9 +38,9 @@ const App = () => {
         <Route path="/allbooks" element={<Allbooks/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/profile" element={<Profile/>}> 
+        <Route  path="/profile/Favourites" index element={<Favourite/>}/>
         <Route  path="/profile/setting" element={<Setting/>} />
         <Route path="/profile/orderHistory" element={<Userprofile/>}/>
-        <Route index path="/profile/Favourites" element={<Favourite/>}/>
 
         </Route>
         <Route path="/aboutus" element={<Aboutus/>}/>

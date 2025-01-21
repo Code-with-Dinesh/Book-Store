@@ -27,32 +27,61 @@ module.exports = router.put('/favourite',Authenticationuser,async(req,res)=>{
     }
 })
 
+// Delete a book from Favourite
+module.exports = router.put('/deletefavorite', Authenticationuser, async (req, res) => {
+    try {
+        const { id } = req.body; // this is the book id
+        const userid = req.user.id;
+
+        const userdata = await user.findById(userid);
+        const isFavourite = userdata.favourite.includes(id);
+        if (!isFavourite) {
+            return res.status(200).json({
+                success: false,
+                message: 'Book is not in Favourite'
+            });
+        }
+
+        await user.findByIdAndUpdate(userid, { $pull: { favourite: id } }, { new: true });
+        return res.status(200).json({
+            success: true,
+            message: 'Book removed from Favourite successfully'
+        });
+    } catch (error) {
+        console.log(`Error while removing from favourite ${error}`);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal Server Error'
+        });
+    }
+});
 // Book delete to the favourite
 
-module.exports = router.delete('/deletefavorite',Authenticationuser,async(req,res)=>{
-      try {
-        const {id}  = req.body; // this is the book id
-        const userid = req.user.id;
+// module.exports = router.put('/deletefavorite',Authenticationuser,async(req,res)=>{
+//       try {
+//         const {id}  = req.body; // this is the book id
+//         const userid = req.user.id;
         
-        const userdata = await user.findById(userid)
-        const isfav = await userdata.favourite.includes(id)
-        const deletebook =  await user.findByIdAndUpdate(userid,{$pull:{favourite:id}})
-        if(isfav){
-            return res.status(200).json({
-                success:true,
-                message:'Book delete To favourite successfully'
-            })
-        }
-        else{
-            return res.status(200).json({
-                success:true,
-                message:'Failed to remove book from the favourite'
-            })
-        }
-      } catch (error) {
-        console.log(`Error while delete from the favorites ${error}`)
-      }
-})
+//         const userdata = await user.findById(userid)
+//         const isfav = await userdata.favourite.includes(id)
+//         const deletebook =  await user.findByIdAndUpdate(userid,{$pull:{favourite:id}})
+//         if(isfav){
+//             return res.status(200).json({
+//                 success:true,
+//                 message:'Book delete To favourite successfully',
+//                 deletebook
+//             })
+//         }
+//         else{
+//             return res.status(200).json({
+//                 success:true,
+//                 message:'Books are not in the fav'
+//             })
+//         }
+//       } catch (error) {
+//         console.log(`Error while delete from the favorites ${error}`)
+//       }
+// })
 
 // Favourite book of a particular user
 

@@ -3,22 +3,25 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; 
 import Loader from './../pages/Loader';
 
+
 const Allbooks = () => {
   const [books, setBooks] = useState([]);
+  
    
   useEffect(() => {
     const booksData = async () => {
       try {
         const response = await axios.get('http://localhost:4000/api/v1/allbooks');
+        console.log(response.data.data[0]._id)
         setBooks(response.data.data);
-        console.log(books)
+       
       } catch (error) {
         console.error('Error fetching books data:', error);
       }
     };
     booksData();
   }, []);
-
+   
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 bg-zinc-800">
@@ -46,9 +49,7 @@ const Allbooks = () => {
                 <p className="mt-1">
                   <span className="font-semibold text-green-400">Price:</span> ${book.price}
                 </p>
-                <button className="bg-green-600 rounded-md px-4 py-2 text-white mt-4 w-full hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500">
-                  Add To Cart
-                </button>
+                
               </div>
             </div>
           ))
