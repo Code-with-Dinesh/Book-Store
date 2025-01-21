@@ -15,6 +15,7 @@ const ParticularBook = () => {
    const userrole =  useSelector(state =>state.auth.role)
    
     const [particularbook,setparticularbook] = useState([])
+    const [cart,setcart] = useState()
       
     useEffect(()=>{
         const bookdata = async()=>{
@@ -33,6 +34,7 @@ const ParticularBook = () => {
       const response =  await axios.post('http://localhost:4000/api/v1/cart',{ id: id },{
         headers:headers
       })
+      setcart(response.data)
       alert(response.data.message)
     };
 

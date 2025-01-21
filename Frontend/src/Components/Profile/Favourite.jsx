@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Card from '../../pages/Card'
-
+import imagebook from '../../assets/no-bookmark.png'
 const Favourite = () => {
   const [favbook,setfavbook] = useState()
   const headers = {
@@ -30,7 +30,15 @@ const Favourite = () => {
         
       ))
     ) : (
-      <p className="text-white text-center col-span-full">No Books Added to Favourites</p>
+      <>
+      <div className=" flex-col items-center justify-center mt-5">
+  <div className=' flex flex-col items-center justify-center mx-auto md:mx-auto w-[50vw] md:w-[70vw] '>
+    <p className="text-white text-center col-span-full text-lg md:text-2xl">No Books Added to Favourites</p>
+    <img className='w-64' src={imagebook} alt="No books" />
+  </div>
+</div>
+
+      </>
     )
   }
 </div>

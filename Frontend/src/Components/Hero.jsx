@@ -1,6 +1,7 @@
 import React from "react";
 import libremove from "../assets/libremove.png";
 import {Link} from 'react-router-dom'
+import libra from '../assets/libra2.png'
 const Hero = () => {
   return (
     <div className=" flex flex-col md:flex-row">
@@ -22,7 +23,7 @@ const Hero = () => {
       <div className="w-full md:w-3/6 flex flex-col items-center justify-center mt-10 md:mt-0">
         <img
           className="w-full  md:m-0 md:w-4/5 max-w-md object-contain"
-          src={libremove}
+          src={libra}
           alt="Hero graphic"
         />
       </div>

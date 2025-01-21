@@ -3,14 +3,24 @@ import Spline from '@splinetool/react-spline';
 
 const Check = () => {
   return (
-    <div className="bg-black text-white flex justify-between items-center p-4 h-screen">
-      <main className="w-[40%] p-4 border-transparent h-screen relative cursor-pointer ">
-      <Spline className='' scene="https://prod.spline.design/0ug3ugewLSg448XV/scene.splinecode" />
-  
-        {/* Overlay to hide the watermark */}
-        <div className="absolute bottom-0 right-0  bg-black w-full h-20"></div>
-      </main>
-      <h1 className="ml-5 text-lg font-bold">Home ejs</h1>
+    <div className="p-4 bg-white rounded-lg shadow-md">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center">
+          <img src="book-image-url" alt="Book" className="w-16 h-20 object-cover rounded-md mr-4" />
+          <div>
+            <h2 className="text-lg font-semibold">Book Title</h2>
+            <p className="text-sm text-gray-600">Author Name</p>
+            <p className="text-sm text-gray-600">$20.00</p>
+          </div>
+        </div>
+        <button className="text-red-500 hover:text-red-700">Delete</button>
+      </div>
+      <div className="border-t pt-4">
+        <div className="flex justify-between items-center">
+          <span className="text-lg font-semibold">Total Price:</span>
+          <span className="text-lg font-semibold">$20.00</span>
+        </div>
+      </div>
     </div>
   );
 };
