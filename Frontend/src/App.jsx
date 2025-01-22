@@ -12,8 +12,7 @@ import ParticularBook from "./Components/Recentadded/ParticularBook";
 import { useDispatch, useSelector } from "react-redux";
 import { Authactions } from "./Components/redux/navslice";
 import Profile from "./Components/Profile/Profile";
-import Setting from './Components/Profile/Setting'
-import Userprofile from './Components/Profile/Userprofile'
+import { ToastContainer } from 'react-toastify'
 import Favourite from './Components/Profile/Favourite'
 const App = () => {
   const dispatch = useDispatch()
@@ -29,7 +28,7 @@ const App = () => {
   },[])
   return (
     <>
-       
+       <ToastContainer/>
         <Navbar />
         <Routes>
         <Route path="/" exact element={<Home/>} />
@@ -39,8 +38,7 @@ const App = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/profile" element={<Profile/>}> 
         <Route  path="/profile/Favourites" index element={<Favourite/>}/>
-        <Route  path="/profile/setting" element={<Setting/>} />
-        <Route path="/profile/orderHistory" element={<Userprofile/>}/>
+        
 
         </Route>
         <Route path="/aboutus" element={<Aboutus/>}/>

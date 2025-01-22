@@ -24,7 +24,7 @@ const Sidebar = ({ userdata }) => {
             {/* Floating Icons */}
             <div className="absolute top-2 right-5 md:right-6 md:top-40 flex flex-col gap-5">
               <span className="p-2 cursor-pointer bg-white rounded-full shadow-md hover:shadow-lg transition">
-                <FaShoppingCart size={25} className="text-green-500" />
+              <Link to="/cart"> <FaShoppingCart size={25} className="text-green-500" /> </Link> 
               </span>
               <span className="p-2 cursor-pointer bg-white rounded-full shadow-md hover:shadow-lg transition">
                 <MdOutlineFavorite size={25} className="text-red-500" />
@@ -40,25 +40,13 @@ const Sidebar = ({ userdata }) => {
           </div>
 
           {/* Links Section */}
-          <div className="md:mt-auto space-y-3">
+          <div className="md:mt-72 space-y-3">
          
             <Link
               to="/profile/Favourites"
               className="block py-2 px-4 bg-zinc-800 hover:bg-zinc-600 rounded-lg transition"
             >
               Favourites
-            </Link>
-            <Link
-              to="/profile/setting"
-              className="block py-2 px-4 bg-zinc-800 hover:bg-zinc-600 rounded-lg transition"
-            >
-              Settings
-            </Link>
-            <Link
-              to="/profile/orderHistory"
-              className="block py-2 px-4 bg-zinc-800 hover:bg-zinc-600 rounded-lg transition"
-            >
-              Order History
             </Link>
           </div>
           <button className="bg-zinc-600 mt-2 px-4 py-2 rounded-lg transition font-semibold text-white hover:bg-red-600 flex justify-center items-center gap-2">

@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { toast } from 'react-toastify'
 const Card = ({ data ,favourite}) => {
  
   const headers = {
@@ -13,7 +13,8 @@ const Card = ({ data ,favourite}) => {
         headers:headers
       })
       console.log(response.data)
-      alert(response.data.message)
+      toast.success(response.data.message)
+      
     }
   
   
@@ -31,6 +32,7 @@ const Card = ({ data ,favourite}) => {
       {
         favourite && <button onClick={removefav} className='bg-red-600 rounded-md px-3 py-2'>Remove from Favorites</button>
       }
+     
     </div>
   );
 };

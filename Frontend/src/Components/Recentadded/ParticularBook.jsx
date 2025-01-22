@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineFavorite } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 const ParticularBook = () => {
     const { id } = useParams();
     const Navigate =  useNavigate()
@@ -35,7 +36,7 @@ const ParticularBook = () => {
         headers:headers
       })
       setcart(response.data)
-      alert(response.data.message)
+      toast.success(response.data.message)
     };
 
     // handler add to favourites
@@ -43,7 +44,7 @@ const ParticularBook = () => {
       const response = await axios.put('http://localhost:4000/api/v1/favourite',{id:id},{
         headers:headers
       })
-      alert(response.data.message)
+      toast.success(response.data.message)
     }
   return (
     <>
@@ -72,6 +73,7 @@ const ParticularBook = () => {
       </div>)
       }
       <div className=" md:w-2/3  text-zinc-200  w-full ml-4 p-5">
+      <ToastContainer />
         <h2 className="md:text-6xl text-2xl font-bold mb-2">{particularbook.title}</h2>
         <p className="text-lg mb-2 flex items-center gap-3"><strong className='text-orange-400'><MdOutlineLanguage size={25} /></strong> {particularbook.lang}</p>
         <p className="text-lg mb-2"><strong className='text-orange-400'>Description:</strong> {particularbook.desc}</p>
