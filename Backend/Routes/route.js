@@ -37,14 +37,14 @@ module.exports =  router.post('/signup',async(req,res)=>{
         "mykey",
         {expiresIn:'3h'}
     )
-    res.cookie("token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Strict',
-        domain:"www.dinesh.com",
-        maxAge: 3 * 60 * 60 * 1000, // 3 hours
-        expires:'3h'
-    });
+    // res.cookie("token", token, {
+    //     httpOnly: true,
+    //     secure: process.env.NODE_ENV === 'production',
+    //     sameSite: 'Strict',
+    //     domain:"www.dinesh.com",
+    //     maxAge: 3 * 60 * 60 * 1000, // 3 hours
+    //     expires:'3h'
+    // });
         return res.status(200).json({
         success:true,
         message:'User Created successfully', 
@@ -97,10 +97,10 @@ module.exports = router.post('/login',async(req,res)=>{
 
     
        )
-       res.cookie('token',token,{
-        httpOnly:true,
+    //    res.cookie('token',token,{
+    //     httpOnly:true,
        
-       })
+    //    })
 
         return res.status(200).json({
         success:true,
@@ -119,10 +119,3 @@ module.exports = router.post('/login',async(req,res)=>{
     }
 })
 
-module.exports = router.get('/dashboard',Authenticationuser,(req,res)=>{
-    res.status(200).json({
-        success:true,
-        message:'Access granted to protected route',
-        user:req.user
-    })
-})

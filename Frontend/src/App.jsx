@@ -14,6 +14,7 @@ import { Authactions } from "./Components/redux/navslice";
 import Profile from "./Components/Profile/Profile";
 import { ToastContainer } from 'react-toastify'
 import Favourite from './Components/Profile/Favourite'
+import Addbook from "./Components/Profile/Addbook";
 const App = () => {
   const dispatch = useDispatch()
   const role = useSelector(state =>state.auth.role)
@@ -37,9 +38,8 @@ const App = () => {
         <Route path="/allbooks" element={<Allbooks/>}/>
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/profile" element={<Profile/>}> 
-        <Route  path="/profile/Favourites" index element={<Favourite/>}/>
-        
-
+        {role === 'user' && ( <Route  path="/profile/Favourites" index element={<Favourite/>}/>) }
+        {role == 'admin' && (<Route path="/profile/addbook" element={<Addbook/>}/>)}
         </Route>
         <Route path="/aboutus" element={<Aboutus/>}/>
         <Route path='/book/:id' element={<ParticularBook/>}/>

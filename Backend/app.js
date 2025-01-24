@@ -9,12 +9,11 @@ const order =  require('./Routes/order')
 const cookieParser = require("cookie-parser");
 const cors =  require('cors')
 require("dotenv").config();
-
-// Middleware
+// Middlewar                             
 app.use(express.json());
 app.use(cookieParser()); 
 app.use(cors())
-// Routes
+// Routes                                      
 app.use('/api/v1', router);
 app.use('/api/v1',order)
 app.use('/api/v1',adminroute)
@@ -22,7 +21,7 @@ app.use('/api/v1',favouite)
 app.use('/api/v1',cart)
 
 
-// Start the Server
+// Start the Server 
 app.listen(process.env.PORT, () => {
     console.log(`Server is starting on port number ${process.env.PORT}`);
 });

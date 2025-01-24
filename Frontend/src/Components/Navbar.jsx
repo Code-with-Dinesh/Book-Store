@@ -6,6 +6,7 @@ import {  useSelector } from "react-redux";
 const Navbar = () => {
   const [navtoggle, setnavtoggle] = useState(false);
   const isloggedin = useSelector((state) => state.auth.isloogedIn);
+  const role = useSelector((state)=>state.auth.role)
   console.log(isloggedin);
 
   const handleNavLinkClick = () => {
@@ -60,7 +61,16 @@ const Navbar = () => {
               </Link>
             </>
           )}
-
+          {
+            isloggedin && role === "admin" &&(
+              <Link
+                to="/profile"
+                className="transition-all text-md cursor-pointer duration-300 hover:text-blue-600"
+              >
+                <div>admin Profile</div>
+              </Link>
+            )
+          }
           {!isloggedin && (
             <div className="flex items-center gap-4">
               <NavLink

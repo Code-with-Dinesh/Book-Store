@@ -16,7 +16,7 @@ const ParticularBook = () => {
    const userrole =  useSelector(state =>state.auth.role)
    
     const [particularbook,setparticularbook] = useState([])
-    const [cart,setcart] = useState()
+   
       
     useEffect(()=>{
         const bookdata = async()=>{
@@ -28,12 +28,14 @@ const ParticularBook = () => {
     const headers = {
       id:localStorage.getItem('id'),
       Authorization: `Bearer ${localStorage.getItem("token")}`,
+      id:id,
      
    }
     // add book to the cart
     const handlercart = async() => {
       const response =  await axios.post('http://localhost:4000/api/v1/cart',{ id: id },{
-        headers:headers
+        headers:headers,
+        
       })
       setcart(response.data)
       toast.success(response.data.message)
@@ -45,6 +47,20 @@ const ParticularBook = () => {
         headers:headers
       })
       toast.success(response.data.message)
+    }
+
+    const deletebook =  async()=>{
+      try {
+        const response = await axios.delete(`http://localhost:4000/api/v1/delete/${id}`,{
+          headers,
+        });
+        console.log(response);
+        toast.success("Book deleted successfully");
+        Navigate("/allbooks"); 
+      } catch (error) {
+        console.error("Error while deleting the book:", error);
+        toast.error("Failed to delete the book");
+      }
     }
   return (
     <>
@@ -69,7 +85,7 @@ const ParticularBook = () => {
       {
         loggedin === true && userrole === 'admin'  && (<div className=' md:flex md:flex-col flex gap-5 mt-5 mr-5'>
         <button className='bg-white p-2 rounded-full'><FaRegEdit size={25} color='blue'/></button>
-        <button className='bg-white p-2 rounded-full'><MdDelete size={25} color='red'/></button>
+        <button onClick={deletebook} className='bg-white p-2 rounded-full'><MdDelete size={25} color='red'/></button>
       </div>)
       }
       <div className=" md:w-2/3  text-zinc-200  w-full ml-4 p-5">

@@ -37,9 +37,9 @@ module.exports = router.post('/createbook',Authenticationuser,async(req,res)=>{
 
 // Delete route for admin 
 
-module.exports =  router.delete('/delete',Authenticationuser,async(req,res)=>{
+module.exports =  router.delete('/delete/:id',Authenticationuser,async(req,res)=>{
     try {
-        const {id} =  req.body; // this is the book id
+        const {id} =  req.params; // this is the book id
         const userid =  req.user.id
         const userrole = await user.findById(userid)
         if(userrole.role !== 'admin'){
