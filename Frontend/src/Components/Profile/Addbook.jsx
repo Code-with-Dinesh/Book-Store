@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Addbook = () => {
+    const Navigate = useNavigate()
     const headers = {
         id: localStorage.getItem('id'),
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -38,6 +40,7 @@ const Addbook = () => {
             });
             console.log(response);
             toast.success("Book added successfully!");
+            Navigate("/allbooks")
         } catch (error) {
             console.error("Error adding book:", error);
             toast.error("Failed to add book.");

@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Authactions } from "../redux/navslice"
 import { useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Sidebar = ({ userdata }) => {
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const Sidebar = ({ userdata }) => {
   const role = useSelector((state)=>state.auth.role)
     const isloggedin =  useSelector((state) => state.auth.isloogedIn);
   return (
-    <div className="bg-zinc-700 rounded-md relative p-4 h-[65vh] md:h-[77vh] text-white flex flex-col">
+    <div className="bg-zinc-700 rounded-md relative p-4 h-[65vh] md:h-[80vh] text-white flex flex-col">
       {!userdata && <Loader />}
       {userdata && (
         <div className="flex-1 flex flex-col">
@@ -63,6 +64,12 @@ const Sidebar = ({ userdata }) => {
             >
               Favourites
             </Link>
+            <Link
+              to="/profile/order"
+              className="block py-2 px-4 bg-zinc-800 hover:bg-zinc-600 rounded-lg transition"
+            >
+              Order History
+            </Link>
           </div>
           )
          }
@@ -76,20 +83,22 @@ const Sidebar = ({ userdata }) => {
           </Link>
           )
          }
-          <button onClick={()=>{
+          <Link  to="/login"> <button onClick={()=>{
             dispatch(Authactions.logout());
             dispatch(Authactions.userrole('user'));
             localStorage.clear("id")
             localStorage.clear("token")
             localStorage.clear("role")
             navigate("/")
-            alert('Logout successfully')
-          }} className="bg-zinc-600 mt-2 px-4 py-2 rounded-lg transition font-semibold text-white hover:bg-red-600 flex justify-center items-center gap-2">
+            
+            toast.success('Logout successfully')
+          }} className="bg-zinc-600 mt-2 px-4 py-2 rounded-lg transition font-semibold w-full text-white hover:bg-red-600 flex justify-center items-center gap-2">
           <span>Logout</span>
           <IoMdLogOut size={20} />
-          </button>
+          </button> </Link>
         </div>
       )}
+      <ToastContainer/>
     </div>
   );
 };

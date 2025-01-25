@@ -15,6 +15,8 @@ import Profile from "./Components/Profile/Profile";
 import { ToastContainer } from 'react-toastify'
 import Favourite from './Components/Profile/Favourite'
 import Addbook from "./Components/Profile/Addbook";
+import UpdateBook from "./Components/Profile/UpdateBook";
+import OrderHistory from "./Components/Profile/OrderHistory";
 const App = () => {
   const dispatch = useDispatch()
   const role = useSelector(state =>state.auth.role)
@@ -39,9 +41,11 @@ const App = () => {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/profile" element={<Profile/>}> 
         {role === 'user' && ( <Route  path="/profile/Favourites" index element={<Favourite/>}/>) }
+        {role === 'user' && ( <Route  path="/profile/order" index element={<OrderHistory/>}/>) }
         {role == 'admin' && (<Route path="/profile/addbook" element={<Addbook/>}/>)}
         </Route>
         <Route path="/aboutus" element={<Aboutus/>}/>
+        <Route path="/updatebook/:id" element={<UpdateBook/>} />
         <Route path='/book/:id' element={<ParticularBook/>}/>
          </Routes>
         <Footer />

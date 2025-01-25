@@ -25,7 +25,7 @@ const Recentbook = () => {
     <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4 bg-zinc-800">
       {book.length > 0 ? (
         book.map((ele, index) => (
-         <Link to={`/book/${ele._id}`}> <Card key={index} data={ele} /></Link>
+         <Link to={`/book/${ele._id}`}> <Card key={ele._id} data={ele} /></Link>
         ))
       ) : (
         <p className="text-gray-300">No books available</p> // Show a message if book array is empty

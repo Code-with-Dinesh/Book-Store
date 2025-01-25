@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Authactions } from './redux/navslice';
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Login = () => {
   const [data,setdata] = useState({email:'',password:''})
@@ -27,7 +28,7 @@ const Login = () => {
        localStorage.setItem("id",response.data.data.id)
        localStorage.setItem('role',response.data.data.role)
        localStorage.setItem('token',response.data.data.token)
-       alert(response.data.message)
+       toast.success(response.data.message)
        navigate('/profile')
 
     } catch (error) {
@@ -88,6 +89,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <ToastContainer  position="top-right"/>
     </div>
   );
 };
