@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Authactions } from './redux/navslice';
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
+import swal from 'sweetalert';
 
 const Login = () => {
   const [data,setdata] = useState({email:'',password:''})
@@ -28,8 +28,14 @@ const Login = () => {
        localStorage.setItem("id",response.data.data.id)
        localStorage.setItem('role',response.data.data.role)
        localStorage.setItem('token',response.data.data.token)
-       toast.success(response.data.message)
-       navigate('/profile')
+        // Show SweetAlert success message
+      swal({
+        title: response.data.message,
+        text: 'Welcome to your profile!',
+        icon: 'success',
+      })
+        navigate('/profile');
+     
 
     } catch (error) {
       console.log(`Error while login in frontend ${error.response.data.message}`)
@@ -37,6 +43,7 @@ const Login = () => {
   }
   return (
     <div className='bg-zinc-800 min-h-screen flex items-center justify-center px-4'>
+       
       <div className='flex flex-col bg-gray-700 gap-4 p-6 rounded-md w-full max-w-sm shadow-lg'>
         <form action="" onSubmit={submitdata} className='flex flex-col gap-4'>
           <h1 className='text-2xl font-semibold text-white '>Login</h1>
@@ -89,7 +96,7 @@ const Login = () => {
           </div>
         </form>
       </div>
-      <ToastContainer  position="top-right"/>
+     
     </div>
   );
 };

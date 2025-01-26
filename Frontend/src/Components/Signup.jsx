@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
+import swal from 'sweetalert';
 const Signup = () => {
   const [data, setdata] = useState({ username: '', email: '', password: '', address: '' });
   const navigate = useNavigate()
@@ -18,7 +19,10 @@ const Signup = () => {
         return alert('All Fields must be required')
       }
       const response =await axios.post('http://localhost:4000/api/v1/signup',data)
-      alert(response.data.message)
+      swal({
+        text:response.data.message,
+        icon: 'success',
+      })
       navigate('/login')
     } catch (error) {
       console.log(`Error at Frontend side while sign up ${error}`)

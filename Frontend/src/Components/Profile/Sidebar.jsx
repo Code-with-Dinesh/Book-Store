@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { Authactions } from "../redux/navslice"
 import { useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
+
 
 const Sidebar = ({ userdata }) => {
   const dispatch = useDispatch()
@@ -16,7 +16,7 @@ const Sidebar = ({ userdata }) => {
   const role = useSelector((state)=>state.auth.role)
     const isloggedin =  useSelector((state) => state.auth.isloogedIn);
   return (
-    <div className="bg-zinc-700 rounded-md relative p-4 h-[65vh] md:h-[80vh] text-white flex flex-col">
+    <div className="bg-zinc-700 rounded-md relative p-4 h-[65vh] md:h-[75vh] text-white flex flex-col">
       {!userdata && <Loader />}
       {userdata && (
         <div className="flex-1 flex flex-col">
@@ -39,7 +39,7 @@ const Sidebar = ({ userdata }) => {
               <Link to="/cart"> <FaShoppingCart size={25} className="text-green-500" /> </Link> 
               </span>
               <span className="p-2 cursor-pointer bg-white rounded-full shadow-md hover:shadow-lg transition">
-                <MdOutlineFavorite size={25} className="text-red-500" />
+              <Link to="/profile/Favourites"> <MdOutlineFavorite size={25} className="text-red-500" /></Link> 
               </span>
             </div>
             )
@@ -64,12 +64,14 @@ const Sidebar = ({ userdata }) => {
             >
               Favourites
             </Link>
-            <Link
+          {
+            role === "admin" && (  <Link
               to="/profile/order"
               className="block py-2 px-4 bg-zinc-800 hover:bg-zinc-600 rounded-lg transition"
             >
               Order History
-            </Link>
+            </Link>)
+          }
           </div>
           )
          }
@@ -96,9 +98,10 @@ const Sidebar = ({ userdata }) => {
           <span>Logout</span>
           <IoMdLogOut size={20} />
           </button> </Link>
+        
         </div>
       )}
-      <ToastContainer/>
+      
     </div>
   );
 };

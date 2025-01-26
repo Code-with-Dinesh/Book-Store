@@ -12,7 +12,7 @@ import ParticularBook from "./Components/Recentadded/ParticularBook";
 import { useDispatch, useSelector } from "react-redux";
 import { Authactions } from "./Components/redux/navslice";
 import Profile from "./Components/Profile/Profile";
-import { ToastContainer } from 'react-toastify'
+
 import Favourite from './Components/Profile/Favourite'
 import Addbook from "./Components/Profile/Addbook";
 import UpdateBook from "./Components/Profile/UpdateBook";
@@ -31,7 +31,7 @@ const App = () => {
   },[])
   return (
     <>
-       <ToastContainer/>
+       
         <Navbar />
         <Routes>
         <Route path="/" exact element={<Home/>} />
